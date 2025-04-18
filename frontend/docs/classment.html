@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styping | Classement</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a2e0e6ad98.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/classement.css">
+
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="container py-5">
+            <h2 class="text-center fw-bold mb-4">Classement des utilisateurs</h2>
+
+            <div class="alert alert-info text-center" role="alert">
+                Cliquez sur les en-têtes de colonnes pour trier le tableau. Utilisez la barre de recherche pour trouver
+                un
+                utilisateur. Votre position est surlignée en bleu.
+            </div>
+
+            <div class="mb-4">
+                <input type="text" class="form-control" id="searchInput" placeholder="Rechercher un utilisateur...">
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" class="sortable">Rang</th>
+                            <th scope="col" class="sortable">Utilisateur</th>
+                            <th scope="col" class="sortable">Leçons</th>
+                            <th scope="col" class="sortable">Précision</th>
+                            <th scope="col" class="sortable">Vitesse</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTable">
+                        <tr>
+                            <td><i class="fas fa-trophy trophy gold"></i> 1</td>
+                            <td>Jean</td>
+                            <td>10</td>
+                            <td>98%</td>
+                            <td>65 MPM</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-trophy trophy silver"></i> 2</td>
+                            <td>Sofia</td>
+                            <td>9</td>
+                            <td>95%</td>
+                            <td>60 MPM</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-trophy trophy bronze"></i> 3</td>
+                            <td>Lucas</td>
+                            <td>9</td>
+                            <td>93%</td>
+                            <td>58 MPM</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Lina</td>
+                            <td>8</td>
+                            <td>90%</td>
+                            <td>52 MPM</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Adam</td>
+                            <td>7</td>
+                            <td>87%</td>
+                            <td>50 MPM</td>
+                        </tr>
+                        <tr class="table-info fw-bold">
+                            <td>15</td>
+                            <td>Moi</td>
+                            <td>6</td>
+                            <td>92%</td>
+                            <td>48 MPM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="./lesson.html" class="btn btn-primary">Reprendre les leçons</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/classment.js"></script>
+</body>
+
+</html>
