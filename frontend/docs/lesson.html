@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styping | Leçons de dactylographie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+</head>
+
+<body
+  class="bg-gradient-to-br from-blue-50 via-white to-purple-50 text-gray-800 min-h-screen flex flex-col font-sans transition-colors duration-300"
+  id="body">
+  <div id="header"></div>
+
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 border border-gray-200">
+
+      <div
+        class="flex flex-wrap justify-between items-center mb-6 bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-lg">
+        <div class="flex items-center space-x-2">
+          <div class="relative w-12 h-12">
+            <svg class="w-full h-full" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                stroke="#e6e6e6" stroke-width="3" />
+              <path class="progress-ring__circle" id="progress-ring"
+                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                stroke="#3b82f6" stroke-width="3" stroke-dasharray="100, 100" stroke-dashoffset="100" />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-gray-700"
+              id="progress-text">0%</div>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600">Progression</p>
+            <p class="font-semibold"><span id="completed-count">0</span>/10 leçons</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">Précision</p>
+          <p class="font-semibold text-2xl" id="accuracy">0%</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">Vitesse</p>
+          <p class="font-semibold text-2xl" id="wpm">0 MPM</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">Difficulté</p>
+          <p class="font-semibold text-2xl" id="difficulty-level">1</p>
+        </div>
+      </div>
+
+      <div class="bg-white border border-blue-100 p-6 rounded-lg shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-bold text-blue-700">Exercice en cours</h2>
+          <div class="space-x-2">
+            <button id="btn-start"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow transition">Commencer</button>
+            <button id="btn-reset"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded shadow transition">Réinitialiser</button>
+            <button id="btn-prev" class="bg-yellow-200 hover:bg-yellow-300 text-gray-900 px-4 py-2 rounded shadow"><i
+                class="fas fa-arrow-left"></i></button>
+            <button id="btn-next" class="bg-yellow-200 hover:bg-yellow-300 text-gray-900 px-4 py-2 rounded shadow"><i
+                class="fas fa-arrow-right"></i></button>
+            <button id="btn-restart" class="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded shadow"><i
+                class="fas fa-rotate-left"></i> Tout recommencer</button>
+          </div>
+        </div>
+        <p class="text-gray-700">Tapez la séquence suivante :</p>
+        <div id="exercise-display" class="text-2xl font-mono text-center flex flex-wrap justify-center gap-1"></div>
+        <div class="text-center text-sm text-gray-600">Appuyez sur les touches dans l'ordre</div>
+        <div class="text-center text-sm text-red-600 mt-2" id="error-msg"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="../js/partials.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/lessons.js"></script>
+
+</body>
+
+</html>
