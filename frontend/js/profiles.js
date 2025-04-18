@@ -13,7 +13,7 @@ async function saveChanges(e) {
 
     const newUsername = document.getElementById('username-input').value.trim();
     const newPhoto = document.getElementById('photo-input').value.trim();
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const user = JSON.parse(localStorage.getItem("user")); 
 
     if (!user || !user.email) {
         alert("Utilisateur non authentifié.");
@@ -36,6 +36,12 @@ async function saveChanges(e) {
         if (res.ok) {
             document.getElementById('username-display').textContent = newUsername;
             document.getElementById('profile-pic').src = newPhoto;
+
+  
+            user.username = newUsername;
+            user.photo = newPhoto;
+            localStorage.setItem("user", JSON.stringify(user));
+
             toggleEditForm(false);
         } else {
             alert(data.message || "Erreur lors de la mise à jour.");
@@ -49,7 +55,7 @@ async function saveChanges(e) {
 function delayedRedirect() {
     alert("Déconnexion en cours...");
     setTimeout(() => {
-        localStorage.removeItem("currentUser");
+        localStorage.removeItem("user"); 
         window.location.href = "../docs/login.html";
     }, 3000);
 }

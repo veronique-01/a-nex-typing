@@ -1,4 +1,3 @@
-
 window.addEventListener('DOMContentLoaded', () => {
   const lessons = [
     "f j f j f j", "d k d k d k", "s l s l s l", "a ; a ; a ;",
@@ -52,6 +51,22 @@ window.addEventListener('DOMContentLoaded', () => {
     const elapsedMinutes = (new Date() - startTime) / 60000;
     const wpm = elapsedMinutes > 0 ? Math.round((correctStrokes / 5) / elapsedMinutes) : 0;
     wpmSpan.textContent = `${wpm} MPM`;
+  }
+
+  function saveLessonStats(accuracy, speed, time) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.email) return;
+
+    const key = `stats_${user.email}`;
+    const allStats = JSON.parse(localStorage.getItem(key)) || [];
+
+    allStats.push({
+      accuracy: accuracy,
+      speed: speed,
+      time: time
+    });
+
+    localStorage.setItem(key, JSON.stringify(allStats));
   }
 
   function startLesson() {
@@ -117,9 +132,25 @@ window.addEventListener('DOMContentLoaded', () => {
       highlightNext(currentIndex);
 
       if (currentIndex === spans.length) {
+
+        const elapsedTime = (new Date() - startTime) / 1000;
+        const elapsedMinutes = elapsedTime / 60;
+        const wpm = elapsedMinutes > 0 ? Math.round((correctStrokes / 5) / elapsedMinutes) : 0;
+        const accuracy = totalStrokes ? Math.round((correctStrokes / totalStrokes) * 100) : 0;
+
+
+        const minutes = Math.floor(elapsedTime / 60);
+        const seconds = Math.floor(elapsedTime % 60);
+        const timeStr = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+        saveLessonStats(accuracy, wpm, timeStr);
+
         completedLessons++;
         currentLesson++;
+
         if (currentLesson < lessons.length) {
+          correctStrokes = 0;
+          totalStrokes = 0;
           setTimeout(() => {
             loadLesson(currentLesson);
           }, 800);
@@ -132,12 +163,12 @@ window.addEventListener('DOMContentLoaded', () => {
       spans[currentIndex].classList.add('incorrect');
       errorMsg.textContent = `Erreur : attendu "${expected}" mais reçu "${e.key}"`;
     }
+
     totalStrokes++;
     updateStats();
   }
 
   document.addEventListener('keydown', handleKey);
-
   document.getElementById('btn-start').addEventListener('click', startLesson);
   document.getElementById('btn-reset').addEventListener('click', resetLesson);
   document.getElementById('btn-prev').addEventListener('click', previousLesson);
@@ -146,4 +177,3 @@ window.addEventListener('DOMContentLoaded', () => {
 
   loadLesson(currentLesson);
 });
-

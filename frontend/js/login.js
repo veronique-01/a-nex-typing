@@ -16,10 +16,10 @@ document.getElementById('login-form').addEventListener('submit', async function 
         const data = await response.json();
 
         if (response.ok) {
-            // Enregistrement de l'utilisateur dans le localStorage
+            
             localStorage.setItem('user', JSON.stringify(data.user));
 
-            // Redirection vers la page d'accueil
+            
             window.location.href = '../docs/acueil.html';
         } else {
             alert(data.message);
