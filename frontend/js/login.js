@@ -1,12 +1,11 @@
-
-document.getElementById('login-form').addEventListener('submit', async (e) => {
+document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('password').value.trim();
 
     try {
-        const res = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -14,16 +13,19 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await res.json();
+        const data = await response.json();
 
-        if (res.ok) {
-            alert("Connexion réussie !");
-            window.location.href = "../docs/acueil.html";
+        if (response.ok) {
+            // Enregistrement de l'utilisateur dans le localStorage
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirection vers la page d'accueil
+            window.location.href = '../docs/acueil.html';
         } else {
             alert(data.message);
         }
-    } catch (err) {
-        console.error(err);
-        alert("Erreur de connexion au serveur.");
+    } catch (error) {
+        console.error('Erreur lors de la connexion :', error);
+        alert("Une erreur est survenue pendant la connexion.");
     }
 });
