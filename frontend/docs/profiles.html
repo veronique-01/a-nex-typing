@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Styping | Mon Profil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6ad98.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .profile-box {
+      margin-top: -8rem;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="text-xl font-bold text-blue-400"><i class="bi bi-keyboard me-2"></i>Styping</div>
+        <div class="flex items-center space-x-6">
+          <a href="../docs/accueil.html" class="text-sm hover:underline">Accueil</a>
+          <a href="./stat.html" class="text-sm hover:underline">Statistiques</a>
+          <a href="./classment.html" class="text-sm hover:underline">Classement</a>
+          <a href="./aide.html" class="text-sm hover:underline">Aide</a>
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profil"
+            class="w-10 h-10 rounded-full border-2 border-white">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="bg-blue-600 text-white py-20 text-center">
+      <h1 class="text-4xl font-bold">Mon Profil</h1>
+      <p class="text-sm mt-2">Bienvenue sur votre espace personnel</p>
+    </section>
+
+    <div class="h-10"></div>
+
+    <section class="max-w-xl mx-auto px-4 mb-10">
+      <div class="bg-white rounded-xl shadow-lg p-8 mt-10">
+
+        <div id="profile-view" class="flex flex-col items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profil"
+            class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover bg-white -mt-16 mb-4"
+            id="profile-pic">
+          <h2 class="text-2xl font-semibold" id="username-display">Nom d'utilisateur</h2>
+          <p class="text-gray-500" id="email-display">email@styping.com</p>
+
+          <div class="mt-4 flex flex-wrap gap-3 justify-center">
+            <button onclick="toggleEditForm(true)"
+              class="px-4 py-1 text-sm border border-blue-500 text-blue-500 rounded hover:bg-blue-50">
+              Modifier le profil
+            </button>
+            <button onclick="delayedRedirect()"
+              class="px-4 py-1 text-sm border border-red-500 text-red-500 rounded hover:bg-red-100">
+              Déconnexion
+            </button>
+          </div>
+
+          <div class="mt-10 text-center">
+            <h3 class="text-lg font-medium mb-3 flex justify-center items-center gap-2">
+              <i class="fas fa-tachometer-alt text-blue-500"></i> Vitesse moyenne
+            </h3>
+            <p class="text-xl font-semibold text-gray-800">78 MPM</p>
+          </div>
+        </div>
+
+        <form id="profile-edit-form" class="hidden mt-6 space-y-4" onsubmit="saveChanges(event)">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input type="text" id="username-input"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Photo de profil (URL)</label>
+            <input type="text" id="photo-input"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="https://...">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
+            <input type="password"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+
+          <div class="flex justify-end gap-3">
+            <button type="button" onclick="toggleEditForm(false)"
+              class="px-4 py-1 text-sm border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Annuler</button>
+            <button type="submit"
+              class="px-4 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 text-sm text-gray-600">
+    &copy; 2025 Styping. Tous droits réservés.
+  </footer>
+  <script src="../scripts/profiles.js"></script>
+
+</body>
+
+</html>
