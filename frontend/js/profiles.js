@@ -28,6 +28,6 @@ function delayedRedirect() {
 
 
     setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = "../docs/login.html";
     }, 10000);
 }
