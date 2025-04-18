@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styping-test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Rubik:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="container my-5 flex-grow-1">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-white neon-text">Mode de Test</h2>
+            <p class="text-white-50">Choisissez votre niveau et tapez le plus vite possible !</p>
+        </div>
+    
+        <div class="bg-dark p-4 rounded-4 shadow-lg mb-4 text-center border border-primary border-opacity-25">
+            <div class="btn-group" role="group" id="mode">
+                <button type="button" class="btn btn-outline-info active" value="easy">
+                    <i class="fas fa-star me-1"></i> Facile
+                </button>
+                <button type="button" class="btn btn-outline-warning" value="medium">
+                    <i class="fas fa-rocket me-1"></i> Moyen
+                </button>
+                <button type="button" class="btn btn-outline-danger" value="hard">
+                    <i class="fas fa-skull-crossbones me-1"></i> Difficile
+                </button>
+            </div>
+        </div>
+    
+        <div class="card bg-gradient text-white border-0 shadow-lg neon-border mb-5">
+            <div class="card-body text-center">
+                <div class="progress mb-4">
+                    <div id="progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 0%"></div>
+                </div>
+    
+                <h5 class="text-muted mb-2">Tapez ce mot :</h5>
+                <div id="word-display" class="p-3 bg-dark rounded text-uppercase fs-4 fw-bold border border-info mb-4 shadow-sm">
+                    <span class="text-info">Chargement...</span>
+                </div>
+    
+                <div class="d-flex justify-content-center gap-4 mb-3">
+                    <span class="badge bg-info fs-6">
+                        <i class="fas fa-clock me-1"></i> <span id="timer">60</span>s
+                    </span>
+                    <span class="badge bg-success fs-6">
+                        <i class="fas fa-bolt me-1"></i> <span id="wpm">0</span> MPM
+                    </span>
+                </div>
+    
+                <button id="restart-btn" class="btn btn-outline-light mt-3">
+                    <i class="fas fa-redo-alt"></i> Recommencer
+                </button>
+            </div>
+        </div>
+    
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="card neon-card border-0">
+                    <div class="card-body">
+                        <h6 class="text-info"><i class="fas fa-tachometer-alt"></i> Vitesse</h6>
+                        <h3 id="speed-result" class="fw-bold">0</h3>
+                        <p class="text-white-50 small">mots par minute</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card neon-card border-0">
+                    <div class="card-body">
+                        <h6 class="text-success"><i class="fas fa-check"></i> Précision</h6>
+                        <h3 id="accuracy-result" class="fw-bold">0%</h3>
+                        <p class="text-white-50 small">caractères corrects</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card neon-card border-0">
+                    <div class="card-body">
+                        <h6 class="text-warning"><i class="fas fa-chart-line"></i> Score</h6>
+                        <h3 id="score-result" class="fw-bold">0</h3>
+                        <p class="text-white-50 small">basé sur vitesse + précision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/script.js"></script>
+</body>
+
+</html>
