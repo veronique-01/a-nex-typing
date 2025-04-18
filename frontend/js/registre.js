@@ -25,7 +25,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
 
         if (res.ok) {
             alert(data.message);
-            window.location.href = "../docs/login.html"; 
+            window.location.href = "../docs/profiles.html"; 
         } else {
             alert(data.message);
         }
