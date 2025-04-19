@@ -11,14 +11,7 @@ const EXCEL_FILE = path.join(__dirname, 'users.xlsx');
 
 app.use(cors());
 app.use(bodyParser.json());
-
 app.use(express.static(path.join(__dirname, '../frontend')));
-
-app.use((req, res, next) => {
-  console.log(`Requête reçue : ${req.method} ${req.url}`);
-  next();
-  
-});
 
 function initExcelFile() {
   if (!fs.existsSync(EXCEL_FILE)) {
@@ -42,11 +35,9 @@ function writeUsers(users) {
   xlsx.writeFile(wb, EXCEL_FILE);
 }
 
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
-
 
 app.post('/api/register', (req, res) => {
   const { username, email, password } = req.body;
@@ -60,12 +51,11 @@ app.post('/api/register', (req, res) => {
     return res.status(409).json({ message: 'Cet email est déjà utilisé.' });
   }
 
-  users.push({ username, email, password, photo: "" });
+  users.push({ username, email, password, photo: '', lessons: 0, accuracy: 0, speed: 0 });
   writeUsers(users);
 
-  res.status(201).json({ message: 'Inscription réussie.', user: { username, email, photo: "" } });
+  res.status(201).json({ message: 'Inscription réussie.', user: { username, email, photo: '' } });
 });
-
 
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
@@ -79,19 +69,41 @@ app.post('/api/login', (req, res) => {
   res.json({ message: 'Connexion réussie.', user });
 });
 
-
 app.post('/api/update-photo', (req, res) => {
   const { email, photo, username } = req.body;
 
   let users = readUsers();
   const index = users.findIndex(u => u.email === email);
-  if (index === -1) return res.status(404).json({ message: "Utilisateur non trouvé." });
+  if (index === -1) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
 
   users[index].photo = photo;
   if (username) users[index].username = username;
 
   writeUsers(users);
-  res.json({ message: "Profil mis à jour." });
+  res.json({ message: 'Profil mis à jour.', user: users[index] });
+});
+
+app.post('/api/save-stats', (req, res) => {
+  const { email, lessons, accuracy, speed } = req.body;
+
+  let users = readUsers();
+  const index = users.findIndex(u => u.email === email);
+  if (index === -1) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+
+  users[index].lessons = (users[index].lessons || 0) + (lessons || 0);
+  users[index].accuracy = accuracy;
+  users[index].speed = speed;
+
+  writeUsers(users);
+  res.json({ message: 'Statistiques mises à jour.' });
+});
+
+app.get('/api/leaderboard', (req, res) => {
+  const users = readUsers();
+  const ranked = users
+    .filter(u => u.lessons || u.accuracy || u.speed)
+    .sort((a, b) => (b.speed || 0) - (a.speed || 0));
+  res.json(ranked);
 });
 
 initExcelFile();

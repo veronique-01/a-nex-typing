@@ -96,17 +96,34 @@ document.addEventListener('DOMContentLoaded', function () {
     function endGame() {
         gameActive = false;
         clearInterval(timerInterval);
-
+    
         const wpm = calculateWPM();
         const accuracy = calculateAccuracy();
         const score = calculateScore(wpm, accuracy);
-
+    
         speedResult.textContent = wpm;
         accuracyResult.textContent = accuracy;
         scoreResult.textContent = score;
-
-        showNotification(`Test completed! Your score: ${score}`, 'success');
+    
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            fetch("http://localhost:3000/api/save-stats", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: user.email,
+                    speed: wpm,
+                    accuracy: accuracy,
+                    lessons: 1 
+                })
+            }).then(res => res.json())
+              .then(data => console.log("Stats sauvegardées :", data))
+              .catch(err => console.error("Erreur sauvegarde :", err));
+        }
+    
+        showNotification(`Test terminé ! Votre score : ${score}`, 'success');
     }
+    
 
     function showNotification(message, type) {
         const notification = document.createElement('div');
